@@ -1,0 +1,69 @@
+﻿@page
+@model WeatherRecordWebsite.Pages.WeatherManagement.WeatherEditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1>Edit Weather</h1>
+<hr />
+<div class="row">
+    <div class="col-md">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="City.Id" />
+            <input type="hidden" asp-for="Record.Id" />
+            <input type="hidden" asp-for="Record.CityId"/>
+            <input type="hidden" asp-for="Record.TemperatureId" />
+            <input type="hidden" asp-for="Record.WindSpeedId" />
+            <input type="hidden" asp-for="Record.WeatherId" />
+            <input type="hidden" asp-for="Temperature.Id" />
+            <input type="hidden" asp-for="WindSpeed.Id" />
+            <input type="hidden" asp-for="Weather.Id" />
+            <h4>Date</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Record.Date" class="control-label"></label>
+                <input asp-for="Record.Date" class="form-control" />
+                <span asp-validation-for="Record.Date" class="text-danger"></span>
+            </div>
+            <h4>Temperature</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Temperature.HighCelsius" class="control-label"></label>
+                <input asp-for="Temperature.HighCelsius" class="form-control" />
+                <span asp-validation-for="Temperature.HighCelsius" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Temperature.LowCelsius" class="control-label"></label>
+                <input asp-for="Temperature.LowCelsius" class="form-control" />
+                <span asp-validation-for="Temperature.LowCelsius" class="text-danger"></span>
+            </div>
+            <h4>WindSpeed</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="WindSpeed.Speed" class="control-label"></label>
+                <input asp-for="WindSpeed.Speed" class="form-control" />
+                <span asp-validation-for="WindSpeed.Speed" class="text-danger"></span>
+            </div>
+            <h4>Weather</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Weather.Conditions" class="control-label"></label>
+                <input asp-for="Weather.Conditions" class="form-control" />
+                <span asp-validation-for="Weather.Conditions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>    
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Details" asp-route-id="@Model.City.Id">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

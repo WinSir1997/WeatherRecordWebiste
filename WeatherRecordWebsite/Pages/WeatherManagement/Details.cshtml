@@ -1,0 +1,40 @@
+﻿@page
+@model WeatherRecordWebsite.Pages.WeatherManagement.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Html.DisplayFor(model => model.City.Name) Details</h1>
+
+<p>
+    <a asp-page="WeatherCreate" asp-route-id="@Model.City.Id">Create New Weather</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(modelItem => Model.RecordViews[0].Date)</th>
+            <th>@Html.DisplayNameFor(modelItem => Model.RecordViews[0].Temperature.HighCelsius)</th>
+            <th>@Html.DisplayNameFor(modelItem => Model.RecordViews[0].Temperature.LowCelsius)</th>
+            <th>@Html.DisplayNameFor(modelItem => Model.RecordViews[0].WindSpeed.Speed)<label>(Km/h)</label></th>
+            <th>@Html.DisplayNameFor(modelItem => Model.RecordViews[0].Weather.Conditions)</th>
+            <th></th>
+        </tr>
+    </thead>   
+    <tbody>
+        @foreach (var item in Model.RecordViews)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                <td>@Html.DisplayFor(modelItem => item.Temperature.HighCelsius)</td>
+                <td>@Html.DisplayFor(modelItem => item.Temperature.LowCelsius)</td>
+                <td>@Html.DisplayFor(modelItem => item.WindSpeed.Speed)</td>
+                <td>@Html.DisplayFor(modelItem => item.Weather.Conditions)</td>
+                <td>
+                    <a asp-page="./WeatherEdit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./WeatherDetails" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./WeatherDelete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

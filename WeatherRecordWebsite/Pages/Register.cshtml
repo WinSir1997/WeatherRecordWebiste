@@ -1,0 +1,48 @@
+﻿@page
+@model WeatherRecordWebsite.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register page";
+}
+<style>
+    .form-group {
+        margin: 10px;
+    }
+</style>
+<h1>Register</h1>
+<hr />
+<div class="row">
+   <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="User.Id" class="control-label"></label>
+                <input asp-for="User.Id" class="form-control" />
+                <span asp-validation-for="User.Id" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="User.Name" class="control-label"></label>
+                <input asp-for="User.Name" class="form-control" />
+                <span asp-validation-for="User.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.type" class="control-label"></label>
+                <select asp-for="User.type" class="form-control" asp-items="@Model.TypeList">
+                    <option value="">-- Select --</option>    
+                </select>
+                <span asp-validation-for="User.type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+                <a class="form-group" asp-page="./Login">Login </a>
+            </div>
+
+        </form>
+   </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
